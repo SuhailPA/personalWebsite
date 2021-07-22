@@ -9,10 +9,17 @@ function validation1(){
             document.getElementById("nameHelp").innerHTML="Name is mandatory";
             return false;
         }
+        else if(name.length<4)
+        {
+            document.getElementById("nameField").focus();
+            nameHelp.style.color="red"
+            document.getElementById("nameHelp").innerHTML="Name should be atleast 4 characters";
+            return false;
+        }
         else if(re.test(name))
         {
             nameHelp.style.color="black"
-            document.getElementById("nameHelp").innerHTML="Kindly enter your Name";
+            document.getElementById("nameHelp").innerHTML="";
             return true;
         }
         else{
@@ -35,17 +42,23 @@ function numValidation()
         document.getElementById("numberHelp").innerHTML="Enter valid Number";
         return false;
     }
-    else if(num1.length<10 || num1=="" || num1.length>10)
+    else if(num1.length<10)
     {
         document.getElementById("inputnumber1").focus();
         numberHelp.style.color="red"
         document.getElementById("numberHelp").innerHTML="10 numbers are mandatory";
         return false;
     }
-  
+    else if(num1.length>10)
+    {
+        document.getElementById("inputnumber1").focus();
+        numberHelp.style.color="red"
+        document.getElementById("numberHelp").innerHTML="Limit exceeded";
+        return false;
+    }
     else{
         numberHelp.style.color="black"
-        document.getElementById("numberHelp").innerHTML="Enter your Number";
+        document.getElementById("numberHelp").innerHTML="";
         return true;
     }
 }
@@ -59,6 +72,7 @@ function mailValidation(){
         document.getElementById("InputEmail1").focus();
         emailHelp.style.color="red"
         document.getElementById("emailHelp").innerHTML="email Id is mandatory"
+        return false
     }
     else if(mail.match(mailV))
     {
@@ -70,16 +84,23 @@ function mailValidation(){
         document.getElementById("InputEmail1").focus();
         emailHelp.style.color="red"
         document.getElementById("emailHelp").innerHTML="Enter valid email-ID"
+        return false
     }
 }
 
 function Message()
 {
     var mes=document.getElementById("inputMessage").value;
-    if(mes.length<=3)
+    if(mes=="")
     {
         messageHelp.style.color="red"
-        document.getElementById("messageHelp").innerHTML="Message should be atleast 4 or more worrds"
+        document.getElementById("messageHelp").innerHTML="Message can't be  null"
+        return false
+    }
+    else if(mes.length<=10)
+    {
+        messageHelp.style.color="red"
+        document.getElementById("messageHelp").innerHTML="Message should be atleast 10 or more words"
         return false
     }
     else{
